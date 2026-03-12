@@ -9,19 +9,22 @@ import org.openqa.selenium.WebDriver;
 
 public class ScreenshotUtil {
 	
-	public static void capture(WebDriver driver, String name){
+	public static String  capture(WebDriver driver, String name){
 
-        try{
+		try{
 
             File src = ((TakesScreenshot)driver)
                     .getScreenshotAs(OutputType.FILE);
 
-            File dest = new File("screenshots/"+name+".png");
+            String path = "screenshots/" + name + ".png";
 
-            FileUtils.copyFile(src, dest);
+            FileUtils.copyFile(src,new File(path));
+
+            return path;
 
         }catch(Exception e){
             e.printStackTrace();
+            return "";
         }
 
     }

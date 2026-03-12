@@ -4,22 +4,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class DriverFactory {
 	
-	public static WebDriver createDriver(){
+	 public static WebDriver createDriver(){
 
-        ChromeOptions options = new ChromeOptions();
+	        WebDriverManager.chromedriver().setup();
 
-        // headless mode
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080");
+	        ChromeOptions options = new ChromeOptions();
 
-        WebDriver driver = new ChromeDriver(options);
+	        options.addArguments("--headless=new");
+	        options.addArguments("--window-size=1920,1080");
 
-        driver.manage().window().maximize();
+	        WebDriver driver = new ChromeDriver(options);
 
-        return driver;
-    }
+	        return driver;
+	    }
 
 }
